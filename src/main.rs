@@ -1,5 +1,15 @@
 fn main() {
     typage();
+    mutabilite();
+}
+
+fn mutabilite(){
+    let mut a: u16 = 56;
+    println!("{a}");
+
+    a = 16;
+
+    println!("{a}");
 }
 
 fn typage(){
