@@ -1,6 +1,16 @@
 fn main() {
     typage();
     mutabilite();
+    ownership();
+}
+
+fn ownership(){
+    let a = "Hello".to_owned();
+    let mut b = a.clone();
+    
+    b.push_str(" World");
+    
+    println!("{a} - {b}");
 }
 
 fn mutabilite(){
