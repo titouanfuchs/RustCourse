@@ -6,6 +6,31 @@ fn main() {
     matchSwitch();
     patternBinding();
     matchPatternBinding();
+    arrays();
+    tuples();
+}
+
+fn tuples(){
+    let a = (1, 2, 3, "string");
+    let b = (1, (2, (3, 4)));
+    
+    println!("{}", a.3);
+    println!("{}", b.1.1.0);
+}
+
+fn arrays(){
+    let mut a: [u8; 4] = [1, 2, 3, 4];
+    println!("{:?}", a);
+    
+    a[2] = 16;    
+    println!("{:?}", a);
+    
+    let slice = &mut a[0..3];
+    
+    println!("Slice: {:?}", slice);
+    slice[1] = 67;
+    
+    println!("Array : {:?}", a);
 }
 
 fn matchPatternBinding(){
