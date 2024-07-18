@@ -4,6 +4,12 @@ use std::collections::HashMap;
 mod hello_module;
 use crate::hello_module::hello_mod;
 
+#[derive(Debug)]
+struct User {
+    name: String,
+    age: u8,
+}
+
 fn main() {
     typage();
     mutabilite();
@@ -27,6 +33,17 @@ fn main() {
     say(&text);
 
     hello_mod::hello();
+
+    structs();
+}
+
+fn structs() {
+    let user = User {
+        name: String::from("Test"),
+        age: 15,
+    };
+    println!("{:?}", user);
+    println!("{:#?}", user);
 }
 
 fn say(text: &String) {
