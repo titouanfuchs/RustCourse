@@ -1,14 +1,15 @@
 use rand::Rng;
 use std::collections::HashMap;
+use std::io::Error;
 
 mod hello_module;
 use crate::hello_module::hello_mod;
+mod user;
+use crate::user::Gender;
+use crate::user::User;
 
-#[derive(Debug)]
-struct User {
-    name: String,
-    age: u8,
-}
+mod shapes;
+use crate::shapes::*;
 
 fn main() {
     typage();
@@ -35,15 +36,45 @@ fn main() {
     hello_mod::hello();
 
     structs();
+    traits();
+}
+
+fn traits() {
+    let r = Rect::new(32.0, 52.0);
+    let c = Circle::new(41.6);
+
+    calc_surface(r);
+    calc_surface(c);
+}
+
+fn calc_surface(shape: impl Shape) {
+    println!("{}", shape.surface());
 }
 
 fn structs() {
-    let user = User {
-        name: String::from("Test"),
-        age: 15,
-    };
+    let user = User::new(
+        "Test".to_owned(),
+        16,
+        Gender::Other("Test".to_owned()),
+        None,
+    );
     println!("{:?}", user);
     println!("{:#?}", user);
+
+    user.hello();
+
+    //user.kill_me();
+
+    println!("1/2 = {:?}", divide(1.0, 2.0).unwrap());
+    //println!("1/0 = {:?}", divide(1.0, 0.0).unwrap());
+}
+
+fn divide(a: f32, b: f32) -> Result<f32, String> {
+    if b == 0.0 {
+        return Err("Cannot divide by zero! dumbass".to_string());
+    }
+
+    Ok(a / b)
 }
 
 fn say(text: &String) {
